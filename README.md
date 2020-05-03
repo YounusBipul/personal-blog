@@ -1,5 +1,5 @@
 # personal-blog
-This is a Simple Personal Blog site Where a blog owner can post blogs and viewers can comment on them.
+A Simple Personal Blog site Where a blog owner can post blogs and viewers can comment on them.
 
 ### Technologies used
 
@@ -27,8 +27,10 @@ Admin:
 1. Restrict particular users from commenting on Posts.
 2. view suggested posts to cover list
 3. search
+4. Categories
 
 User:
 1. Like a comment
 2. Like a post
 3. Suggest a topic to cover
+4. Categories

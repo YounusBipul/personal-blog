@@ -34,3 +34,11 @@ User:
 2. Like a post
 3. Suggest a topic to cover
 4. Categories
+
+### Instalation guide
+
+1. Make sure npm, mongodb is installed on your pc
+2. clone this repository
+3. In the root directory-> open command prompt and install all the necessary npm packages used in this proect.
+run "npm install"
+4. run "node app.js" and visit "localhost:4500"

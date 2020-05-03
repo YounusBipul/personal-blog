@@ -1,11 +1,11 @@
 # personal-blog
 This is a Simple Personal Blog site Where a blog owner can post blogs and viewers can comment on them.
 
-###Technologies used
+### Technologies used
 
 Nodejs, Express, MongoDB
 
-###Features
+### Features
 
 Admin:
 1. Create Account (only one account can be created as it is a personal blog site)
@@ -21,7 +21,7 @@ User:
 3. Add, edit, remove comment on Posts
 4. Manage profile (edit profile and change password)
 
-###Future Work
+### Future Work
 
 Admin: 
 1. Restrict particular users from commenting on Posts.

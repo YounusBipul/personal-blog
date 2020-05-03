@@ -1,0 +1,28 @@
+<div class="container">
+    <h6>Total: {{count}} users</h6>
+    <div class="table-responsive">
+    <table class="table table-bordered table-hover text-center" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Profile Picture</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            
+            <tr>
+                <td>
+                    <img src="/profile_pic/{{profile_pic}}" style="height: 50px; width:50px; border-radius:50%">
+                </td>
+                <td>{{first_name}} {{last_name}}</td>
+                <td>{{email}}</td>
+            </tr>
+
+            {{/each}}
+        </tbody>
+    </table>
+    </div>
+
+</div>

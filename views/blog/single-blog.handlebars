@@ -1,0 +1,192 @@
+<div class="container">
+
+      <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+          <!-- Title -->
+          <h1 class="mt-4">{{post.title}}</h1>
+
+          <!-- Author -->
+          {{!-- <p class="lead">
+            by
+            <a href="#">Start Bootstrap</a>
+          </p> --}}
+
+          <hr>
+
+          <!-- Date/Time -->
+          <p> 
+            <div class="row">
+                <div class="col-10">
+                    {{post.created_at}}
+                </div>
+                <div class="col-2">
+                      views: {{post.view}}
+                </div>
+            </div>
+           
+          </p>
+          
+
+          <hr>
+
+          <!-- Preview Image -->
+          <img class="img-fluid rounded" src="/uploads/{{post.cover_image}}" alt="">
+
+          <hr>
+
+          <!-- Post Content -->
+          <p class="lead" style="text-align: justify;">{{post.body}}</p>
+          <hr>
+
+          <!-- Comments Form -->
+          {{#if loggedInUser}}
+          <div class="card my-4">
+            <h5 class="card-header">Leave a Comment:</h5>
+            <div class="card-body">
+              <form action="/blog/{{post._id}}/add-comment" method="POST">
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" name="comment_body"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary float-right">Submit</button>
+              </form>
+            </div>
+          </div>
+          {{else}}
+          <div class="card my-4">
+            <h5 class="card-header">Log in to comment <a href="/blog/auth/login" class="btn btn-primary float-right">Login</a></h5>
+          </div>
+          {{/if}}
+
+          <!-- Single Comment -->
+          {{#each post.comments}}
+          <div class="media mb-4">
+            {{!-- <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> --}}
+            <img class="d-flex mr-3 rounded-circle" src="/profile_pic/{{user.profile_pic}}" alt="">
+            <div class="media-body">
+              <h5 class="mt-0">{{user.first_name}} {{user.last_name}}</h5>
+              <span>{{comment_body}}</span>
+            </div>
+            {{#matchId user._id '==' ../loggedInUser._id }}
+              <i class="fa fa-edit" onclick="loadCommentBodyInModal(this, '{{_id}}')" data-toggle="modal" data-target="#exampleModal"></i>
+              <i class="fa fa-trash ml-3" onclick="deleteThisComment('{{_id}}')"></i>
+            {{/matchId}}
+          </div>
+          {{/each}}
+        </div>
+
+        <!--<hidden form for delteing comment>-->
+        <div style="display: none;">
+            <form action="/blog/{{post._id}}/delete-comment" method="POST">
+              <input type="text" name="comment_id_to_delete" id='comment_id_to_delete' value="{{post._id}}">
+              <button type="submit" id="comment_delete_button">Delete</button>
+            </form>
+        </div>
+        <!--</hidden form for delteing comment>-->
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Categories Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Categories</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">Web Design</a>
+                    </li>
+                    <li>
+                      <a href="#">HTML</a>
+                    </li>
+                    <li>
+                      <a href="#">Freebies</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">JavaScript</a>
+                    </li>
+                    <li>
+                      <a href="#">CSS</a>
+                    </li>
+                    <li>
+                      <a href="#">Tutorials</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Side Widget</h5>
+            <div class="card-body">
+              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id='modal-body'>
+        <div class="card-body" style="padding: 0;">
+          <form action="/blog/{{post._id}}/update-comment" method="POST">
+            <div class="form-group">
+              <textarea class="form-control" rows="3" id="upate_commnet_body" name="upate_commnet_body"></textarea>
+            </div>
+            <input type="hidden" name="comment_id" id="comment_id">
+            <button type="submit" class="btn btn-primary float-right">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function loadCommentBodyInModal(ele, comment_id){
+    var comment_body= ele.previousElementSibling.children[1].innerText;
+    document.getElementById("upate_commnet_body").innerText= comment_body;
+    document.getElementById("comment_id").value= comment_id;
+  }
+
+  function deleteThisComment(comment_id){
+    console.log('sdfdsf');
+    document.getElementById('comment_id_to_delete').value= comment_id;
+    document.getElementById('comment_delete_button').click();
+  }
+</script>

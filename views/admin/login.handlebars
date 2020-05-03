@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Admin- login</title>
+  <!-- Bootstrap core CSS-->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  {{!-- <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css"> --}}
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", type="text/css">
+  <!-- Custom styles for this template-->
+  <link href="/css/sb-admin.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-dark">
+  <div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header">Login</div>
+      <div class="card-body">
+        <form action="/admin/auth/login" method="POST">
+          <div class="form-group">
+            {{# if error }}
+              <div class="col-12 alert alert-danger">
+                {{error}}
+              </div>
+            {{/if}}
+            <label for="email">Email address</label>
+            <input class="form-control" id="email" name="email" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="passowrd">Password</label>
+            <input class="form-control" id="passowrd" name="password" type="password" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="/admin/auth/register">Register an Account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/js/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin.min.js"></script>
+</body>
+
+</html>

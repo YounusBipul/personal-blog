@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header text-center">Create a Post</div>
+      <div class="card-body">
+        <form action="/admin/posts/create" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Title</label>
+            <input class="form-control" name="title" id="title" type="text" placeholder="Enter Title">
+          </div>
+          <div class="form-group">
+            <label for="body">Post Body</label>
+            <textarea class="form-control" name="body" id="body" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="cover_image">Cover Image</label>
+            <input class="form-control" type="file" id="cover_image" name="cover_image" style="display: none;">
+            <br><a class="btn btn-primary text-white" onclick="clickOn('cover_image')"><i class="fa fa-upload"> Upload Cover Image</i></a>
+            <img id="cover_image_preview" src="#" alt="your image" style='visibility: hidden'/>
+          </div>
+          <button type="submit" class="btn btn-info float-right">Submit</button>
+        </form>
+      </div>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+          $('#cover_image_preview').attr('src', e.target.result);
+          $('#cover_image_preview').attr('style', 'visibility: visible');
+        }
+        
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+      }
+    }
+
+    function clickOn(id){
+      document.getElementById(id).click();
+    }
+
+    $("#cover_image").change(function() {
+      readURL(this);
+    });
+</script>

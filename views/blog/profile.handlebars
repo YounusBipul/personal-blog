@@ -1,0 +1,56 @@
+<div class="container">
+
+    <div class="row">
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+            <!-- Side Widget -->
+            <div class="card my-4">
+            <div class="card-body">
+                <div class="col-12">
+                    <ul class="list-group">
+                        <a href="/profile/{{user._id}}"><li class="list-group-item active">Detials</li></a>
+                        <a href="/profile/edit/{{user._id}}"><li class="list-group-item">Edit</li></a>
+                        <a href="/profile/change-password/{{user._id}}"><li class="list-group-item">Change Password</li></a>
+                        <a href="/blog/auth/logout"><li class="list-group-item">Logout</li></a>
+                    </ul>
+                </div>
+            </div>
+            </div>
+
+        </div>
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+            <div class="card card-register mx-auto mt-4 mb-2">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12 text-center">
+                            <img src="/profile_pic/{{user.profile_pic}}" id="profile-pic-display-details">
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                            <div class="col-md-12">
+                                <label for="first_name">First name</label>
+                                <h6>{{user.first_name}}</h6>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="last_name">Last name</label>
+                                <h6>{{user.last_name}}</h6>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email">Email address</label>
+                                <h6>{{user.email}}</h6>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>

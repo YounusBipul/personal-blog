@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TheBlog | {{title}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="/css/blog-home.css" rel="stylesheet">
+    <style>
+      .card-img-top{
+        height: 300px;
+      }
+      .rounded-circle{
+        height: 50px;
+        width: 50px;
+      }
+      #profile-pic-display{
+        height: 100px;
+        width: 100px;
+        margin-bottom: 20px;
+        border-radius: 50%;
+      }
+      #profile-pic-display-details{
+        height: 175px;
+        width: 175px;
+        border-radius: 50%;
+      }
+      #camera-icon{
+        position: relative;
+        bottom: -25px;
+        left: -25px;
+        cursor: pointer;
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    {{> blog-navbar}}
+
+    <!-- Page Content -->
+    {{{body}}}
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

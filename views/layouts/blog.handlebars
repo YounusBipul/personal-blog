@@ -1,70 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>TheBlog | {{title}}</title>
+  <title>TheBlog | {{title}}</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", type="text/css">
-    <!-- Custom styles for this template -->
-    <link href="/css/blog-home.css" rel="stylesheet">
-    <style>
-      .card-img-top{
-        height: 300px;
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" , rel="stylesheet" ,
+    type="text/css">
+  <!-- Custom styles for this template -->
+  <link href="/css/blog-home.css" rel="stylesheet">
+  <style>
+    .card-img-top {
+      height: 300px;
+    }
+
+    .rounded-circle {
+      height: 50px;
+      width: 50px;
+    }
+
+    #profile-pic-display {
+      height: 100px;
+      width: 100px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+    }
+
+    #profile-pic-display-details {
+      height: 175px;
+      width: 175px;
+      border-radius: 50%;
+    }
+
+    #camera-icon {
+      position: relative;
+      bottom: -25px;
+      left: -25px;
+      cursor: pointer;
+    }
+
+    .widget>.card-img-top {
+      height: auto;
+    }
+
+    .widget {
+      margin-bottom: 10%;
+    }
+
+    .widget>span {
+      color: black;
+    }
+
+    .post-category {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.5);
+      right: 0;
+      padding: 1% 4%;
+      top: 2%;
+      border-radius: 2%;
+    }
+
+    .post-category>a {
+      color: white;
+    }
+
+    .desktop-only {
+      display: block;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    @media screen and (max-width: 450px) {
+      .desktop-only {
+        display: none;
       }
-      .rounded-circle{
-        height: 50px;
-        width: 50px;
-      }
-      #profile-pic-display{
-        height: 100px;
-        width: 100px;
-        margin-bottom: 20px;
-        border-radius: 50%;
-      }
-      #profile-pic-display-details{
-        height: 175px;
-        width: 175px;
-        border-radius: 50%;
-      }
-      #camera-icon{
-        position: relative;
-        bottom: -25px;
-        left: -25px;
-        cursor: pointer;
-      }
-    </style>
 
-  </head>
+      .mobile-only {
+        display: block;
+      }
+    }
+  </style>
 
-  <body>
+</head>
 
-    <!-- Navigation -->
-    {{> blog-navbar}}
+<body>
 
-    <!-- Page Content -->
-    {{{body}}}
+  <!-- Navigation -->
+  {{> blog-navbar}}
+
+  <!-- Page Content -->
+  {{{body}}}
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+    </div>
     <!-- /.container -->
+  </footer>
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
+  <!-- Bootstrap core JavaScript -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-
-  </body>
+</body>
 
 </html>

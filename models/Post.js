@@ -28,6 +28,11 @@ const postSchema = new Schema({
         type: String,
         slug: "title"
     },
+    category:{
+        required: true,
+        type: Schema.Types.ObjectId,
+        ref: 'categories'
+    },
     body: {
         type: String,
         required: true,
@@ -40,9 +45,17 @@ const postSchema = new Schema({
         type: [comments],
         default: null
     },
-    view:{
+    views:{
         type: Number,
         default: 0
+    },
+    likes:{
+        type: Number,
+        default: 0
+    },
+    is_featured:{
+        type: Boolean,
+        default: false
     },
     created_at:{
         type: Date,

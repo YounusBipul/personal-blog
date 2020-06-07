@@ -1,6 +1,7 @@
 const express= require('express');
 const router =  express.Router();
 const User= require('../../models/User');
+const Category= require('../../models/Category');
 var bcrypt = require('bcryptjs');
 
 router.all('/*', (req, res, next)=>{
@@ -12,9 +13,12 @@ router.get('/:id', (req, res)=>{
     if(req.user){
         if(req.user._id.equals(req.params.id)){
             User.findOne({_id: req.params.id}).then(user=>{
-                res.render('blog/profile',{
-                    user: user,
-                    title: 'profile '+ user.first_name
+                Category.find({}).then(categorys=>{
+                    res.render('blog/profile',{
+                        user: user,
+                        title: 'profile '+ user.first_name,
+                        categorys: categorys
+                    });
                 });
             });
         }
@@ -31,9 +35,12 @@ router.get('/edit/:id', (req, res)=>{
     if(req.user){
         if(req.user._id.equals(req.params.id)){
             User.findOne({_id: req.params.id}).then(user=>{
-                res.render('blog/edit-profile',{
-                    user: user,
-                    title: 'Edit profile '+ user.first_name
+                Category.find({}).then(categorys=>{
+                    res.render('blog/edit-profile',{
+                        user: user,
+                        title: 'Edit profile '+ user.first_name,
+                        categorys: categorys
+                    });
                 });
             });
         }
@@ -81,9 +88,12 @@ router.post('/edit/:id', (req, res)=>{
 router.get('/change-password/:id', (req, res)=>{
     if(req.user){
         if(req.user._id.equals(req.params.id)){
-            res.render('blog/change-password',{
-                user: req.user,
-                title: 'Change Password'
+            Category.find({}).then(categorys=>{
+                res.render('blog/change-password',{
+                    user: req.user,
+                    title: 'Change Password',
+                    categorys: categorys
+                });
             });
         }
         else{

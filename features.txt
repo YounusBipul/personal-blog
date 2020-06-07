@@ -5,6 +5,8 @@ Admin:
 4. Delete other user comment if necessary
 5. View user list
 6. Get Notification on comment
+5. Categorys
+7. Featured posts
 
 User:
 1. Create an account

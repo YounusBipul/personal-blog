@@ -21,6 +21,20 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCategorys" data-parent="#exampleAccordion">
+            <i class="fa fa-list-alt"></i>
+            <span class="nav-link-text">Categories</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseCategorys">
+            <li>
+              <a href="/admin/categorys/">All Categories</a>
+            </li>
+            <li>
+              <a href="/admin/categorys/create">Create Category</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePosts" data-parent="#exampleAccordion">
             <i class="fa fa-book"></i>
             <span class="nav-link-text">Posts</span>
@@ -33,6 +47,12 @@
               <a href="/admin/posts/create">Create Post</a>
             </li>
           </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="/admin/posts/featured">
+            <i class="fa fa-star"></i>
+            <span class="nav-link-text">Featured</span>
+          </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="/admin/comment">
@@ -138,7 +158,7 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
+        {{!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-envelope"></i>
             <span class="d-lg-none">Messages
@@ -171,7 +191,7 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item small" href="#">View all messages</a>
           </div>
-        </li>
+        </li> --}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-bell"></i>
@@ -182,7 +202,7 @@
               <i class="fa fa-fw" id="new_noti"></i>
             </span>
           </a>
-          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+          <div class="dropdown-menu" style="width: 25rem" aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">Notifications:</h6>
             <div class="dropdown-divider"></div>
             <div id='notification-display' style="max-height: 300px; overflow-y: scroll">

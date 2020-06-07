@@ -1,6 +1,7 @@
 const express= require('express');
 const router =  express.Router();
 const User= require('../../models/User');
+const Category= require('../../models/Category');
 const Notification= require('../../models/Notification');
 
 router.all('/*', (req, res, next)=>{
@@ -14,9 +15,12 @@ router.get('/', (req, res)=>{
 
 router.get('/about', (req,res)=>{
     User.findOne({user_role : 'admin'}).then(user=>{
-        res.render('blog/about',{
-            admin:user,
-            title: 'About'
+        Category.find({}).then(categorys=>{
+            res.render('blog/about',{
+                admin:user,
+                title: 'About',
+                categorys: categorys
+            });
         });
     });
 });

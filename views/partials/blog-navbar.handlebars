@@ -1,46 +1,65 @@
+<style>
+  .dropdown-item{
+    color: white;
+  }
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="/">TheBlog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
-            </li>
-            {{!-- <li class="nav-item">
+  <div class="container">
+    <a class="navbar-brand" href="/">TheBlog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Category
+          </a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+            {{#each categorys}}
+              <a class="dropdown-item" href="/category/{{slug}}">{{name}}</a>
+            {{/each}}
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        {{!-- <li class="nav-item">
               <a class="nav-link" href="#">Services</a>
             </li> --}}
-            {{#if loggedInUser}}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{loggedInUser.first_name}}
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="/profile/{{loggedInUser._id}}">profile</a>
-                {{#doMath loggedInUser.user_role 'eq' 'admin'}}
-                  <a class="dropdown-item" href="/admin">Admin Pannel</a>
-                {{/doMath}}
-                <a class="dropdown-item" href="/blog/auth/logout">logout</a>
-              </div>
-            </li>
-            {{else}}
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/auth">Admin
-                <span class="sr-only"></span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/blog/auth/login">Login</a>
-            </li>
-            {{/if}}
-          </ul>
-        </div>
-      </div>
-    </nav>
+        {{#if loggedInUser}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{loggedInUser.first_name}}
+          </a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/profile/{{loggedInUser._id}}">profile</a>
+            {{#doMath loggedInUser.user_role 'eq' 'admin'}}
+            <a class="dropdown-item" href="/admin">Admin Pannel</a>
+            {{/doMath}}
+            <a class="dropdown-item" href="/blog/auth/logout">logout</a>
+          </div>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/auth">Admin
+            <span class="sr-only"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog/auth/login">Login</a>
+        </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>

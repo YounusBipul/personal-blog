@@ -1,103 +1,125 @@
+<style>
+
+</style>
+
 <div class="container mt-2">
 
-      <div class="row">
+  <div class="row">
 
-        <!-- Blog Entries Column -->
-        <div class="col-md-8">
+    <div class="col-md-3">
 
-          {{!-- <h1 class="my-4">Page Heading
+      <!-- Search Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+          <form method="GET" action="/blog">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." name="search">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="submit" style="display: inline;">Go!</button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Categories Widget -->
+      <div class="card my-4 desktop-only">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <ul class="list-unstyled mb-0">
+                {{#each categorys}}
+                <li>
+                  <a href="/category/{{slug}}">
+                    <div class="card mb-2">
+                      <div class="card-body p-2">
+                        {{name}}
+                      </div>
+                    </div>
+                  </a>
+
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-6">
+
+      {{!-- <h1 class="my-4">Page Heading
             <small>Secondary Text</small>
           </h1> --}}
 
-          <!-- Blog Post -->
-          {{#if posts}}
-            {{#each posts}}
-                <div class="card mb-4 my-4">
-                    <img class="card-img-top" src="/uploads/{{cover_image}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h2 class="card-title">{{title}}</h2>
-                        {{!-- <p class="card-text">{{body}}</p> --}}
-                        <a href="/blog/{{slug}}" class="btn btn-primary">Read More &rarr;</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Posted on : {{created_at}}
-                    </div>
-                </div>
-            {{/each}}
-              <!-- Pagination -->
-              <ul class="pagination justify-content-center mb-4">
-                {{#paginate current=current pages=pages url=url}} {{/paginate}}
-              </ul>
-          {{else}}
-            <h3 class="alert alert-danger text-center">No posts</h3>
-          {{/if}}
-          
+      <!-- Blog Post -->
+      {{#if posts}}
+      {{#each posts}}
+      <div class="card mb-4 my-4">
+        <div>
+        <img class="card-img-top" src="/uploads/{{cover_image}}" alt="Card image cap">
         </div>
-
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-          <!-- Search Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Search</h5>
-            <div class="card-body">
-              <form method="GET" action="/blog">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for..." name="search">
-                <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="submit" style="display: inline;">Go!</button>
-                </span>
-              </div>
-              </form>
-            </div>
-          </div>
-
-          <!-- Categories Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Categories</h5>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#">Web Design</a>
-                    </li>
-                    <li>
-                      <a href="#">HTML</a>
-                    </li>
-                    <li>
-                      <a href="#">Freebies</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#">JavaScript</a>
-                    </li>
-                    <li>
-                      <a href="#">CSS</a>
-                    </li>
-                    <li>
-                      <a href="#">Tutorials</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Side Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
-            <div class="card-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-            </div>
-          </div>
-
+        <span class="post-category"><a href="/category/{{category.slug}}">{{category.name}}</a></span>
+        <div class="card-body">
+          <h4 class="card-title">{{title}}</h4>
+          {{!-- <h6>Category: <a href="/category/{{slug}}">{{category.name}}</a> </h6> --}}
+          {{!-- <p class="card-text">{{body}}</p> --}}
+          <a href="/blog/{{slug}}" class="btn btn-primary">Read More &rarr;</a>
         </div>
-
+        <div class="card-footer text-muted">
+          Posted on : {{#fixdate created_at }} {{/fixdate}}
+        </div>
       </div>
-      <!-- /.row -->
+      {{/each}}
+      <!-- Pagination -->
+      <ul class="pagination justify-content-center mb-4">
+        {{#paginate current=current pages=pages url=url}} {{/paginate}}
+      </ul>
+      {{else}}
+      
+        <h3 class="alert alert-danger text- my-4">No posts found !</h3>
+      
+      {{/if}}
 
     </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-lg-3 col-md-3 col-sm-12">
+      <!-- Categories Widget -->
+      <div class="card my-4">
+        <h5 class="card-header" style="text-align: right;">Featured</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              {{#each featuredPosts}}
+              <a href="/blog/{{slug}}">
+                <div class="widget">
+                  <img class="card-img-top" src="/uploads/{{cover_image}}" alt="Card image cap">
+                  <span>{{title}}</span>
+                </div>
+              </a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{!-- <!-- Side Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Side Widget</h5>
+        <div class="card-body">
+          You can put anything you want inside of these side widgets. They are easy to use, and feature the new
+          Bootstrap 4 card containers!
+        </div>
+      </div> --}}
+
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div>

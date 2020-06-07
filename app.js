@@ -9,11 +9,14 @@ const upload = require('express-fileupload');
 const passport= require('passport');
 const session = require("express-session");
 const flash = require('connect-flash');
+const {
+    mongoDbUrl
+} = require('./config/database');
 
 //connecting to databse
 mongoose.Promise= global.Promise;
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb://localhost/blog',  { useNewUrlParser: true, useUnifiedTopology: true}).then(db=>{
+mongoose.connect( mongoDbUrl,  { useNewUrlParser: true, useUnifiedTopology: true}).then(db=>{
     console.log("Databse connected");
 }).catch(error=> {
     console.log("Couldn't connect to database. "+error);
@@ -99,6 +102,10 @@ const handlebarConfig =  exphbs.create({
                 output += `<li class="page-item "><a href="${url}page=${options.hash.pages}" class="page-link">Last</a></li>`;
             }
             return output;
+        },
+        fixdate: function(date){
+            date = new Date(date);
+            return date.getDate()+"/"+(date.getMonth() + 1)+"/"+date.getFullYear()+", at "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
         }
     }
 });
@@ -130,22 +137,26 @@ app.use((req,res,next)=>{
 const admin_routes = require('./routes/admin/index');
 const admin_auth = require('./routes/admin/admin_authentication');
 const admin_post_routes = require('./routes/admin/post');
+const admin_category_routes = require('./routes/admin/category');
 const admin_manage_comment = require('./routes/admin/manage_comment');
 const admin_users = require('./routes/admin/users');
 const admin_notification = require('./routes/admin/notification');
 const blog_routes = require('./routes/blog/index');
 const blog = require('./routes/blog/blog');
+const category = require('./routes/blog/category');
 const blog_auth = require('./routes/blog/blog_authentication');
 const blog_profile = require('./routes/blog/profile');
 
 //use routes
 app.use('/', blog_routes);
 app.use('/blog', blog);
+app.use('/category', category);
 app.use('/profile', blog_profile);
 app.use('/blog/auth',blog_auth);
 app.use('/admin', admin_routes);
 app.use('/admin/auth', admin_auth);
 app.use('/admin/posts/', admin_post_routes);
+app.use('/admin/categorys/', admin_category_routes);
 app.use('/admin/comment/', admin_manage_comment);
 app.use('/admin/user/', admin_users);
 app.use('/admin/notification', admin_notification);

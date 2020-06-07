@@ -9,11 +9,12 @@ Nodejs, Express, MongoDB
 
 Admin:
 1. Create Account (only one account can be created as it is a personal blog site)
-2. Add, Edit, Delete a Post
-3. Login with same id in blog site as user and manage profile
-4. Delete other user comment if necessary
-5. View user list
-6. Get Notification on comment
+2. Add, Edit, Delete a Categories
+3. Add, Edit, Delete a Post
+4. Login with same id in blog site as user and manage profile
+5. Delete other user comment if necessary
+6. View user list
+7. Get Notification on comment
 
 User:
 1. Create an account
@@ -27,13 +28,11 @@ Admin:
 1. Restrict particular users from commenting on Posts.
 2. view suggested posts to cover list
 3. search
-4. Categories
 
 User:
 1. Like a comment
 2. Like a post
 3. Suggest a topic to cover
-4. Categories
 
 ### Instalation guide
 

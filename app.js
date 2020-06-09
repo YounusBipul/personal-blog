@@ -13,6 +13,8 @@ const {
     mongoDbUrl
 } = require('./config/database');
 
+var PORT= process.env.PORT || 4500;
+
 //connecting to databse
 mongoose.Promise= global.Promise;
 mongoose.set('useCreateIndex', true);
@@ -166,6 +168,6 @@ app.get('/*', (req, res)=>{
 });
 
 //start listening
-app.listen(4500, ()=>{
-    console.log('listening on port 4500');
-})
+app.listen(PORT, ()=>{
+    console.log('listening on port ');
+});

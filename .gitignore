@@ -1,2 +1,4 @@
 node_modules
 *.cs
+public/profile_pic/*
+public/uploads/*

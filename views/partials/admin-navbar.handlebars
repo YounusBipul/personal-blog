@@ -252,8 +252,9 @@
   <script src="/js/jquery.min.js"></script>
   <script>
     var limit=5;
+    var baseAPI="http://localhost:4500";
     function getNotifications(){
-      var url= 'http://localhost:4500/admin/notification/'+limit;
+      var url= baseAPI+'/admin/notification/'+limit;
       $.getJSON( url, function( data ) {
         var items = [];
         var notifications= data.notifications;
@@ -287,7 +288,7 @@
     window.setInterval(getNotifications, 5000);
     function markAllAsRead(){
       $.ajax({
-        url: 'http://localhost:4500/admin/notification/mark-all-as-read',
+        url: baseAPI+'/admin/notification/mark-all-as-read',
         type: 'GET',
         success: function (data) {
           var message = data.message;      

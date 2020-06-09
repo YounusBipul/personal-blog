@@ -1,7 +1,9 @@
 const express= require('express');
 const router =  express.Router();
 const {userAuthenticated} = require('../../helpers/authentication');
-const Notification= require('../../models/Notification');
+const User= require('../../models/User');
+const Post = require('../../models/Post');
+const Category = require('../../models/Category');
 
 router.all('/*',(req, res, next)=>{
     req.app.locals.layout= "admin";
@@ -22,7 +24,19 @@ router.all('/*',(req, res, next)=>{
 // });
 
 router.get('/',userAuthenticated, (req, res)=>{
-    res.render('admin/index');
+    Post.find({}).then(posts=>{
+        Category.find({}).then(categorys=>{
+            User.find({user_role : 'user'}).then(users=>{
+                var context = {
+                    'totalPosts' : posts.length,
+                    'totalCategorys' : categorys.length,
+                    'totalUsers' : users.length
+                };
+                res.render('admin/index', context); 
+            })
+        });
+    });
+    
 });
 
 module.exports = router;

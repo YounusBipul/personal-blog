@@ -41,11 +41,11 @@ router.get('/create', (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-    let file = req.files.cover_image;
-    let file_name= Date.now()+"_"+file.name;
-    file.mv('./public/uploads/'+file_name, (err)=>{
-        console.log(err);
-    })
+    // let file = req.files.cover_image;
+    // let file_name= Date.now()+"_"+file.name;
+    // file.mv('./public/uploads/'+file_name, (err)=>{
+    //     console.log(err);
+    // })
     var featured;
     if(req.body.featured){
         featured= true;
@@ -56,7 +56,7 @@ router.post('/create', (req, res) => {
     let newPost = new Post({
         title: req.body.title,
         body: req.body.body,
-        cover_image: file_name,
+        cover_image: req.body.cover_image_pic,
         category : req.body.category,
         is_featured : featured
     });
@@ -80,20 +80,21 @@ router.put('/edit/:id', (req, res)=>{
         post.title= req.body.title;
         post.body= req.body.body;
         post.category= req.body.category;
+        post.cover_image = req.body.cover_image_pic;
         if(req.body.featured){
             post.is_featured= true;
         }
         else{
             post.is_featured= false;
         }
-        if(req.files != null){
-            let file = req.files.cover_image;
-            let file_name= Date.now()+"_"+file.name;
-            file.mv('./public/uploads/'+file_name, (err)=>{
-                console.log(err);
-            })
-            post.cover_image= file_name;
-        }
+        // if(req.files != null){
+        //     let file = req.files.cover_image;
+        //     let file_name= Date.now()+"_"+file.name;
+        //     file.mv('./public/uploads/'+file_name, (err)=>{
+        //         console.log(err);
+        //     })
+        //     post.cover_image= file_name;
+        // }
 
         post.save().then(updatedPost=>{
             res.redirect('/admin/posts');

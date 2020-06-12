@@ -27,7 +27,8 @@
         </div>
         <div class="form-group">
           <label for="cover_image">Cover Image</label>
-          <input class="form-control" type="file" id="cover_image" name="cover_image" style="display: none;">
+          <input class="form-control" type="file" id="cover_image" style="display: none;">
+          <input class="form-control" type="text" id="cover_image_pic" name="cover_image_pic" style="display: none;">
           <br><a class="btn btn-primary text-white" onclick="clickOn('cover_image')"><i class="fa fa-upload"> Upload
               Cover Image</i></a>
           <img id="cover_image_preview" src="#" alt="your image" style='visibility: hidden' />
@@ -47,6 +48,7 @@
 
       reader.onload = function (e) {
         $('#cover_image_preview').attr('src', e.target.result);
+        $('#cover_image_pic').attr('value', e.target.result);
         $('#cover_image_preview').attr('style', 'visibility: visible');
       }
 

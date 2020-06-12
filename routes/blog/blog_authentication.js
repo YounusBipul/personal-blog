@@ -29,16 +29,16 @@ router.post('/register', (req, res) => {
         }
         else{
             console.log('else');
-            let file = req.files.profile_pic;
-            let file_name= Date.now()+"_"+file.name;
-            file.mv('./public/profile_pic/'+file_name, (err)=>{
-                console.log(err);
-            })
+            // let file = req.files.profile_pic;
+            // let file_name= Date.now()+"_"+file.name;
+            // file.mv('./public/profile_pic/'+file_name, (err)=>{
+            //     console.log(err);
+            // })
             let newUser = new User({
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 email: req.body.email,
-                profile_pic: file_name,
+                profile_pic: req.body.profile_picture,
                 user_role: "user",
             });
 

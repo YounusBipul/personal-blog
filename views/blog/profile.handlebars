@@ -2,6 +2,9 @@
     .list-group>a{
         margin-bottom: 2%;
     }
+    #profile-pic-display-details{
+        border: 2px solid #ccc;
+    }
 </style>
 <div class="container">
 
@@ -32,7 +35,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4 col-xs-12 text-center">
-                            <img src="/profile_pic/{{user.profile_pic}}" id="profile-pic-display-details">
+                            <img src="{{user.profile_pic}}" id="profile-pic-display-details">
                         </div>
                         <div class="col-md-8 col-xs-12">
                             <div class="col-md-12">

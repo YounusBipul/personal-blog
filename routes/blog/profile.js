@@ -61,14 +61,15 @@ router.post('/edit/:id', (req, res)=>{
                 user.first_name= req.body.first_name;
                 user.last_name= req.body.last_name;
                 user.email = req.body.email;
-                if(req.files != null){
-                    let file = req.files.profile_pic;
-                    let file_name= Date.now()+"_"+file.name;
-                    file.mv('./public/profile_pic/'+file_name, (err)=>{
-                        console.log(err);
-                    })
-                    user.profile_pic= file_name;
-                }
+                user.profile_pic = req.body.profile_picture
+                // if(req.files != null){
+                //     let file = req.files.profile_pic;
+                //     let file_name= Date.now()+"_"+file.name;
+                //     file.mv('./public/profile_pic/'+file_name, (err)=>{
+                //         console.log(err);
+                //     })
+                //     user.profile_pic= file_name;
+                // }
 
                 user.save().then(updatedPost=>{
                     res.redirect('/profile/'+user._id);
